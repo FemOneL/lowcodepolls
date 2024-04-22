@@ -1,0 +1,16 @@
+.editor-container {
+    border: 2px dashed #ccc;
+    padding: 10px;
+    min-height: 200px;
+    position: relative;
+    overflow: auto;
+  }
+  .editor-element {
+    border: 1px solid #aaa;
+    margin: 5px;
+    padding: 5px;
+    cursor: grab;
+    position: absolute;
+  }
+
+  
