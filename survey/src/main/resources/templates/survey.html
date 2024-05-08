@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Опитування</title>
+    <link rel="stylesheet" th:href="@{/styles/survey.css}" />
+</head>
+<body>
+<div th:fragment="survey">
+    <h1 th:text="'Опитування №' + ${survey.id}">Опитування №</h1>
+    <form action="/result" method="post">
+        <div id="container" class="container">
+            <div th:each="question : ${survey.questions}">
+                <div th:if="${question.type.name() == 'SIMPLE'}">
+                    <div th:replace="simpleQuestion :: simple"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <button type="submit">Submit</button>
+</div>
+</body>
+</html>

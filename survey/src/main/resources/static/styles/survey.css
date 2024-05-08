@@ -1,0 +1,11 @@
+  .container {
+      padding: 10px;
+      min-height: 200px;
+      overflow: auto;
+  }
+
+  .editor-element {
+    margin: 5px;
+    padding: 5px;
+    position: absolute;
+  }

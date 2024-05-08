@@ -1,0 +1,19 @@
+.drag-item {
+    cursor: grab;
+    margin-bottom: 10px;
+}
+
+.drop-area {
+    border: 2px dashed #007bff;
+    padding: 20px;
+    text-align: center;
+    min-height: 200px;
+}
+
+.drag-item:hover {
+    background-color: #f8f9fa;
+}
+
+.drag-item.hide {
+    display: none;
+}
