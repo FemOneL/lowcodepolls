@@ -49,7 +49,7 @@ public class DefaultSurveyPopulator implements SurveyPopulator {
                 .componentId(questionDTO.componentId())
                 .type(questionDTO.type())
                 .question(questionDTO.question())
-                .answerOptions(answers)
+                .answers(answers)
                 .build();
 
         answers.forEach(answer -> answer.setQuestion(question));

@@ -37,7 +37,7 @@ public class DefaultSurveyReversePopulator implements SurveyReversePopulator {
     private QuestionDTO populateQuestion(Question question) {
         List<AnswerDTO> answers = new ArrayList<>();
 
-        question.getAnswerOptions()
+        question.getAnswers()
                 .forEach(answer -> answers.add(populateAnswer(answer)));
 
         return QuestionDTO.builder()

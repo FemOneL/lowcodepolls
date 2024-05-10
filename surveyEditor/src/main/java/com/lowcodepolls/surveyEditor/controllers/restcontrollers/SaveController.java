@@ -16,8 +16,8 @@ public class SaveController {
     private final SurveyRestService surveyRestService;
 
     @PostMapping
-    public void saveElement(@RequestBody SurveyDTO surveyDTO) {
-        surveyRestService.saveSurvey(surveyDTO);
+    public SurveyDTO saveElement(@RequestBody SurveyDTO surveyDTO) {
+        return surveyRestService.saveSurvey(surveyDTO);
     }
 
 }

@@ -43,7 +43,7 @@ public class Question {
     private QuestionType type;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    private List<Answer> answerOptions;
+    private List<Answer> answers;
 
     @ManyToOne
     @JoinColumn(name = "survey_id")

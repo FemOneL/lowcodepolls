@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   var contentComponents = [];
-
+  var surveyId;
   var simplePoll = 'SIMPLE';
 
   var components = [simplePoll];
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initSortable();
   }
 
-  function addOption(container, index, value) {
+  function addOption(container, index, value = undefined, answerId = undefined) {
     const containerDiv = document.getElementById(container);
     const newOptionDiv = document.createElement('div');
     const newOptionInput = document.createElement('input');
@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
     newOptionInput.classList.add('form-control');
     newOptionInput.type = 'text';
     newOptionInput.classList.add('answerOption-' + index);
+    if (answerId) {
+      newOptionInput.setAttribute('answerId', answerId);
+    }
+
     if (value) {
       newOptionInput.value = value;
     } else {
@@ -56,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     Array.from(component.answers).forEach((answer) => {
-      addOption('answers-' + index, index, answer.answer);
+      addOption('answers-' + index, index, answer.answer, answer.id);
     });
   }
 
@@ -70,11 +74,12 @@ document.addEventListener('DOMContentLoaded', function () {
       li.innerHTML = getSimplePollElement(component, index);
       contentComponentsList.appendChild(li);
       populatePoll(component, index);
-      document.getElementById('addAnswer-' + index).addEventListener('click', () => addOption('answers-' + index, index, undefined));
+      document.getElementById('addAnswer-' + index).addEventListener('click', () => addOption('answers-' + index, index));
     });
   }
 
   window.removeComponent = function (index) {
+    collectData();
     contentComponents.splice(index, 1);
     renderContentComponents();
   };
@@ -95,6 +100,10 @@ document.addEventListener('DOMContentLoaded', function () {
       Array.from(answers).forEach((currentAnswer) => {
         let answer = {
           answer: currentAnswer.value
+        }
+        let answerId = currentAnswer.getAttribute('answerId');
+        if (answerId) {
+          answer.id = answerId;
         }
         component.answers.push(answer);
       });
@@ -128,7 +137,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
           contentComponents.splice(to, 0, item);
 
+          Array.from(contentComponents).forEach((component, index) => {
+            component.componentId = `component-${index}`;
+          });
+
           console.log(contentComponents);
+          renderContentComponents();
         }
       },
       start: function (evt, ui) {
@@ -141,7 +155,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function importData(data) {
     contentComponents = [];
-    contentComponents = JSON.parse(data).questions;
+    const parsedData = JSON.parse(data);
+    if (parsedData?.id) {
+      surveyId = parsedData.id;
+    }
+    contentComponents = parsedData.questions;
+
+    contentComponents.sort((a, b) => {
+      let numA = parseInt(a.componentId.charAt(a.componentId.length - 1));
+      let numB = parseInt(b.componentId.charAt(b.componentId.length - 1));
+
+      return numA - numB;
+    });
+
     renderContentComponents();
   }
 
@@ -177,18 +203,24 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch(url, {
       method: 'POST',
       headers: {
-          'Content-Type': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: jsonString
-  })
-  .then(response => {
-      if (response.ok) {
-          console.log('saved');
-      }
-  })
-  .catch(error => {
-      console.error('There was a problem with your fetch operation:', error);
-  });
+    })
+      .then(response => {
+        if (!response.ok) {
+          console.error('error!');
+          return;
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('saved');
+        window.location.replace(`http://localhost:8081/editor/${data.id}/edit`);
+      })
+      .catch(error => {
+        console.error('There was a problem with your fetch operation:', error);
+      });
   }
 
   $('#saveButton').click(function () {
@@ -209,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     collectData();
     let survey = {
+      id: surveyId,
       questions: contentComponents
     }
     let sendJson = JSON.stringify(survey);
