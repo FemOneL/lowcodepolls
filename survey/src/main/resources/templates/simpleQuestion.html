@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="simple">
+    <div class="editor-element draggable" th:id="'question-' + ${question.id}"
+         style="left: 10px; top: 180px; cursor: grab;"
+         th:style="'transform: translate3d(' + ${question.position.x} + 'px, ' + ${question.position.y} + 'px, 0px);'">
+        <p th:text="${question.question}"></p>
+        <div th:each="answer, iterStat : ${question.answerOptions}">
+            <input type="radio" th:name="'question-' + ${question.id}" th:value="${iterStat.index}">
+            <span th:text="${answer.answer}"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

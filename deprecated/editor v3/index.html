@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop Survey Editor</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Elements</h4>
+                <div id="drag1" class="drag-item btn btn-light btn-block" draggable="true">Text Field</div>
+                <div id="drag2" class="drag-item btn btn-light btn-block" draggable="true">Checkbox</div>
+                <div id="drag3" class="drag-item btn btn-light btn-block" draggable="true">Radio Button</div>
+                <div id="drag4" class="drag-item btn btn-light btn-block" draggable="true">Dropdown</div>
+            </div>
+            <div class="col-md-8">
+                <h4>Survey Area</h4>
+                <div class="drop-area" id="drop-area">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

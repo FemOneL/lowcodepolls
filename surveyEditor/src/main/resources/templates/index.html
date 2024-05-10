@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="components col-md-2">
+            <ul id="components_list"></ul>
+        </div>
+        <div class="content col-md-10">
+            <ul id="content_components_list"></ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="button" class="btn btn-success" id="saveButton">Save</button>
+        </div>
+        <div class="col-md-12 text-right">
+            <button type="button" class="btn btn-success" id="importData">Import</button>
+        </div>
+        <!-- Приховане поле для передачі масиву -->
+        <input type="hidden" th:value="${editData}" id="editData"/>
+    </div>
+</div>
+</body>
+</html>
