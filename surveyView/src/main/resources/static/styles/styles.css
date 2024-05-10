@@ -1,0 +1,7 @@
+.question-container {
+    background-color: #f8f9fa; /* Світлий сірий фон */
+    border: 1px solid #dee2e6; /* Сіра рамка */
+    border-radius: 5px; /* Закруглені кути */
+    padding: 20px; /* Внутрішні відступи */
+    margin-bottom: 20px; /* Відступ знизу */
+}

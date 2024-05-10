@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.lowcodepolls</groupId>
-	<artifactId>surveyEditor</artifactId>
+	<artifactId>surveyView</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>surveyEditor</name>
-	<description>Editor for low-code application</description>
+	<name>surveyView</name>
+	<description>View for low-code application</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -43,6 +43,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>

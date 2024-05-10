@@ -1,4 +1,4 @@
-package com.lowcodepolls.surveyEditor.core.dto.enums;
+package com.lowcodepolls.surveyView.core.dto.enums;
 
 public enum QuestionType {
     SINGLE,

@@ -1,7 +1,7 @@
 package com.lowcodepolls.surveyEditor.controllers.restcontrollers;
 
 import com.lowcodepolls.surveyEditor.core.dto.SurveyDTO;
-import com.lowcodepolls.surveyEditor.core.services.SurveyRestService;
+import com.lowcodepolls.surveyEditor.core.services.impl.DefaultSurveyRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SaveController {
 
-    private final SurveyRestService surveyRestService;
+    private final DefaultSurveyRestService surveyRestService;
 
     @PostMapping
     public SurveyDTO saveElement(@RequestBody SurveyDTO surveyDTO) {

@@ -2,9 +2,8 @@ package com.lowcodepolls.surveyEditor.controllers.mvccontrollers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lowcodepolls.surveyEditor.core.dto.SurveyDTO;
 import com.lowcodepolls.surveyEditor.core.exceptions.SurveyNotFoundException;
-import com.lowcodepolls.surveyEditor.core.services.SurveyRestService;
+import com.lowcodepolls.surveyEditor.core.services.impl.DefaultSurveyRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class EditorController {
 
-    private final SurveyRestService surveyRestService;
+    private final DefaultSurveyRestService surveyRestService;
 
     @GetMapping("/new")
     public String newSurvey() {

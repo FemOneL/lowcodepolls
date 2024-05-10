@@ -1,4 +1,4 @@
-package com.lowcodepolls.survey.controllers.restcontrollers;
+package com.lowcodepolls.survey.controllers;
 
 import com.lowcodepolls.survey.core.dto.SurveyDTO;
 import com.lowcodepolls.survey.core.entity.Survey;
