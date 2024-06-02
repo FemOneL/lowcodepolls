@@ -243,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
     collectData();
     let survey = {
       id: surveyId,
+      isDraft: true,
       questions: contentComponents
     }
     let sendJson = JSON.stringify(survey);

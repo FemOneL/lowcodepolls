@@ -23,8 +23,7 @@ public class DefaultSurveyRestService implements SurveyRestService {
 
         HttpEntity<SurveyDTO> requestEntity = new HttpEntity<>(survey, headers);
 
-        SurveyDTO responseSurvey = restTemplate.postForObject(SAVE_URL, requestEntity, SurveyDTO.class);
-        return responseSurvey;
+        return restTemplate.postForObject(SAVE_URL, requestEntity, SurveyDTO.class);
     }
 
     @Override

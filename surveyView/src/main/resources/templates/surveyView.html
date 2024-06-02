@@ -11,7 +11,8 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="text-center mb-4">Опитування</h2>
+            <h2 th:text="'Survey ' + ${survey.id} + (${survey.isDraft} ? ' [Draft]' : '')" class="text-center mb-4">
+                Опитування</h2>
             <form>
                 <div th:each="question : ${survey.questions}">
                     <div th:if="${question.type.name() == 'SINGLE'}">
@@ -22,9 +23,15 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Завершити опитування</button>
+                    <button th:disabled="${survey.isDraft}" type="submit" class="btn btn-primary">Завершити опитування
+                    </button>
                 </div>
             </form>
+            <div class="text-center" th:if="${survey.isDraft}">
+                <form method="post" th:action="@{'/view/' + ${survey.id} + '/survey/publish'}">
+                    <button type="submit" class="btn btn-primary">Опублікувати</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

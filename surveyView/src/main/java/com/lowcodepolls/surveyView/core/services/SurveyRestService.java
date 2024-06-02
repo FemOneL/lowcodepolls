@@ -7,4 +7,6 @@ public interface SurveyRestService {
 
     SurveyDTO getSurvey(long surveyId);
 
+    void publishEvent(long surveyId);
+
 }

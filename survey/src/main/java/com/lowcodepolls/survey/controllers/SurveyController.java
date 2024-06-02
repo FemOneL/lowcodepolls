@@ -1,7 +1,6 @@
 package com.lowcodepolls.survey.controllers;
 
 import com.lowcodepolls.survey.core.dto.SurveyDTO;
-import com.lowcodepolls.survey.core.entity.Survey;
 import com.lowcodepolls.survey.core.service.SurveyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +18,13 @@ public class SurveyController {
     private final SurveyService surveyService;
 
     @PostMapping
-    public Survey createSurvey(@RequestBody SurveyDTO surveyDTO) {
+    public SurveyDTO createSurvey(@RequestBody SurveyDTO surveyDTO) {
         return surveyService.saveSurvey(surveyDTO);
+    }
+
+    @PostMapping("/{surveyId}/survey/publish")
+    public void publishSurvey(@PathVariable long surveyId) {
+        surveyService.publishSurvey(surveyId);
     }
 
     @GetMapping("/{surveyId}/survey")

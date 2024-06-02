@@ -4,7 +4,9 @@ import com.lowcodepolls.survey.core.dto.SurveyDTO;
 import com.lowcodepolls.survey.core.entity.Survey;
 
 public interface SurveyService {
-    Survey saveSurvey(SurveyDTO surveyDTO);
+    SurveyDTO saveSurvey(SurveyDTO surveyDTO);
+
+    void publishSurvey(long surveyId);
 
     SurveyDTO getSurvey(long surveyId);
 }

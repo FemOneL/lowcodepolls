@@ -10,6 +10,8 @@ import com.lowcodepolls.survey.core.service.SurveyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class DefaultSurveyService implements SurveyService {
@@ -21,9 +23,18 @@ public class DefaultSurveyService implements SurveyService {
     private final SurveyReversePopulator surveyReversePopulator;
 
     @Override
-    public Survey saveSurvey(SurveyDTO surveyDTO) {
+    public SurveyDTO saveSurvey(SurveyDTO surveyDTO) {
         Survey survey = surveyPopulator.populateSurvey(surveyDTO);
-        return surveyRepository.save(survey);
+        return surveyReversePopulator.populateSurvey(surveyRepository.save(survey));
+    }
+
+    @Override
+    public void publishSurvey(long surveyId) {
+        Optional<Survey> updatingSurvey = surveyRepository.findById(surveyId);
+        updatingSurvey.ifPresent(survey -> {
+            survey.setIsDraft(false);
+            surveyRepository.save(survey);
+        });
     }
 
     @Override
