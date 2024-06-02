@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
   var contentComponents = [];
   var surveyId;
-  var simplePoll = 'SIMPLE';
 
-  var components = [simplePoll];
+  var components = ['SINGLE', 'MULTIPLY'];
 
   function init() {
     const editData = document.getElementById('editData')
@@ -71,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     contentComponents.forEach(function (component, index) {
       component.componentId = 'component-' + index;
       var li = document.createElement('li');
-      li.innerHTML = getSimplePollElement(component, index);
+      li.innerHTML = getPollElement(component, index);
       contentComponentsList.appendChild(li);
       populatePoll(component, index);
       document.getElementById('addAnswer-' + index).addEventListener('click', () => addOption('answers-' + index, index));
@@ -119,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
         collectData();
         let component = {
           componentId: undefined,
-          type: 'SIMPLE',
+          type: components[movingIndex],
           question: '',
           answers: []
         };
@@ -133,6 +132,8 @@ document.addEventListener('DOMContentLoaded', function () {
           const from = contentComponents.findIndex(item => item.componentId === div.id);
           const to = ui.item.index();
 
+          collectData();
+          
           const [item] = contentComponents.splice(from, 1);
 
           contentComponents.splice(to, 0, item);
@@ -176,13 +177,13 @@ document.addEventListener('DOMContentLoaded', function () {
       "questions":[
          {
             "componentId":"component-0",
-            "type":"SIMPLE",
+            "type":"SINGLE",
             "question":"question?",
             "answers":[]
          },
          {
             "componentId":"component-1",
-            "type":"SIMPLE",
+            "type":"MULTIPLY",
             "question":"not a question?",
             "answers":[
                {
@@ -242,13 +243,14 @@ document.addEventListener('DOMContentLoaded', function () {
     collectData();
     let survey = {
       id: surveyId,
+      isDraft: true,
       questions: contentComponents
     }
     let sendJson = JSON.stringify(survey);
     saveSurvey(sendJson);
   });
 
-  function getSimplePollElement(component, index) {
+  function getPollElement(component, index) {
     return `<div id='component-${index}' class="card card-outline-secondary text-xs-center">
     <div class="card-block">
         <a class="btn btn-danger" href="#" onclick="removeComponent(${index})">

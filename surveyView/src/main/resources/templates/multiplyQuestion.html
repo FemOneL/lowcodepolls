@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="multiplyQuestion" class="question-container">
+    <p th:text="${question.question}" class="fw-bold">Question</p>
+    <div th:each="answer : ${question.answers}">
+        <div class="form-check mb-2">
+            <input class="form-check-input" th:disabled="${survey.isDraft}" type="checkbox" th:id="'answer-' + ${answer.id}"/>
+            <label th:text="${answer.answer}" class="form-check-label" th:for="'answer-' + ${answer.id}">Option</label>
+        </div>
+    </div>
+</div>
+</body>
+</html>

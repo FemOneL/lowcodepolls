@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5"> <!-- Додано клас container та mt-5 для верхнього відступу -->
+    <div class="row justify-content-center"> <!-- Центрування вмісту -->
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Sign in</h2> <!-- Заголовок з центруванням та нижнім відступом -->
+            <form method="post" action="/login/perform_login">
+                <!-- Email input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="email" id="username" name="username" class="form-control" placeholder="Email address"/>
+                </div>
+
+                <!-- Password input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="password"/>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">
+                    Sign in
+                </button>
+
+                <!-- Register buttons -->
+                <div class="text-center">
+                    <p>Not a member? <a href="/register">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

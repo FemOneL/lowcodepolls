@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lowcodepolls.surveyEditor.core.dto.SurveyDTO;
 import com.lowcodepolls.surveyEditor.core.exceptions.SurveyNotFoundException;
-import com.lowcodepolls.surveyEditor.core.services.SurveyRestService;
+import com.lowcodepolls.surveyEditor.core.services.impl.DefaultSurveyRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class EditorController {
 
-    private final SurveyRestService surveyRestService;
+    private final DefaultSurveyRestService surveyRestService;
 
     @GetMapping("/new")
     public String newSurvey() {
@@ -29,8 +29,13 @@ public class EditorController {
     public String edit(@PathVariable long surveyId, Model model) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String editData;
+
         try {
-           editData = objectMapper.writeValueAsString(surveyRestService.getSurvey(surveyId));
+            SurveyDTO survey = surveyRestService.getSurvey(surveyId);
+            if (!survey.isDraft()) {
+                return "surveyIsNotDraft";
+            }
+            editData = objectMapper.writeValueAsString(survey);
         } catch (SurveyNotFoundException e) {
             return "surveyNotFound";
         }

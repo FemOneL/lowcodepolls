@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5"> <!-- Додано клас container та mt-5 для верхнього відступу -->
+    <div class="row justify-content-center"> <!-- Центрування вмісту -->
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Sign up</h2> <!-- Заголовок з центруванням та нижнім відступом -->
+            <form>
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row mb-4">
+                    <div class="col">
+                        <div data-mdb-input-init class="form-outline">
+                            <input type="text" id="form3Example1" class="form-control" placeholder="First name"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div data-mdb-input-init class="form-outline">
+                            <input type="text" id="form3Example2" class="form-control" placeholder="Last name"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="email" id="form3Example3" class="form-control" placeholder="Email address"/>
+                </div>
+
+                <!-- Password input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="password" id="form3Example4" class="form-control" placeholder="Password"/>
+                </div>
+
+
+                <!-- Submit button -->
+                <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Sign up</button>
+
+                <!-- Register buttons -->
+                <div class="text-center">
+                    <p>Already a member? <a href="/login">Login</a></p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

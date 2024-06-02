@@ -23,6 +23,7 @@ public class DefaultSurveyReversePopulator implements SurveyReversePopulator {
 
         return SurveyDTO.builder()
                 .id(survey.getId())
+                .isDraft(survey.getIsDraft())
                 .questions(questions)
                 .build();
     }

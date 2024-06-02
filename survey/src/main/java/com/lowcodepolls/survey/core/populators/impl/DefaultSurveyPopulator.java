@@ -23,6 +23,7 @@ public class DefaultSurveyPopulator implements SurveyPopulator {
 
         Survey survey = Survey.builder()
                 .id(surveyDTO.id())
+                .isDraft(surveyDTO.isDraft())
                 .questions(questions)
                 .build();
 
